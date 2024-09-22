@@ -17,4 +17,3 @@ def serve(path):
 api.add_resource(storyApi, '/story/')
 api.add_resource(ttsApi, '/tts/')
 api.add_resource(childProfileLevelingApi, '/childProfileLeveling/')
-#asd
