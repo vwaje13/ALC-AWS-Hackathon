@@ -4,6 +4,7 @@ from flask_cors import CORS #comment this on deployment
 from api.story import storyApi
 from api.childProfileLeveling import childProfileLevelingApi
 from api.tts import ttsApi
+from api.companion import companionApi
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 CORS(app) #comment this on deployment
@@ -15,4 +16,5 @@ def serve(path):
 
 api.add_resource(storyApi, '/story/')
 api.add_resource(ttsApi, '/tts/')
-api.add_resource(childProfileLevelingApi, '/childProfileLeveling/'
+api.add_resource(childProfileLevelingApi, '/childProfileLeveling/')
+api.add_resource(companionApi, '/companion/')
