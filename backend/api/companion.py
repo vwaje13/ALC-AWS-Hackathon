@@ -14,20 +14,20 @@ class companionApi(Resource):
     openai.api_key = parsed_data['api_key']
 
     parser = reqparse.RequestParser()
-    parser.add_argument('topic', type=str)
-    parser.add_argument('grade', type=str)
+    parser.add_argument('section', type=str)
+    parser.add_argument('input', type=str)
     parser.add_argument('skill_level', type=str)
     args = parser.parse_args()
 
-    topic = args['topic']
-    grade = args['grade']
-    skill_level = args['skill_level']
+    section = str(args['section'])
+    input = str(args['input'])
+    skill_level = str(args['skill_level'])
 
     def talk_with_bot(input, skill_level, section):
         """
         Sends a chat message to the OpenAI API and returns the response content.
         """
-
+        print("we got here pt 1")
         try:
             # Create chat completion request
             response = openai.chat.completions.create(
@@ -38,9 +38,9 @@ class companionApi(Resource):
                 ]
             )
             # Return the response content
-
+            print("We got here")
             return response.choices[0].message.content
         except Exception as e:
             return f"An error occurred: {str(e)}"
  
-    return jsonify(talk_with_bot(topic, grade))
+    return jsonify(talk_with_bot(input, skill_level, section))
