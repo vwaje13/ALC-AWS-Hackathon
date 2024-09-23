@@ -27,7 +27,6 @@ class companionApi(Resource):
         """
         Sends a chat message to the OpenAI API and returns the response content.
         """
-        print("we got here pt 1")
         try:
             # Create chat completion request
             response = openai.chat.completions.create(
@@ -38,7 +37,6 @@ class companionApi(Resource):
                 ]
             )
             # Return the response content
-            print("We got here")
             return response.choices[0].message.content
         except Exception as e:
             return f"An error occurred: {str(e)}"
