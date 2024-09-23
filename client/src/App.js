@@ -1,23 +1,26 @@
 import logo from './logo.svg';
+import profileimg from './profileimg.svg';
 import './App.css';
+
+function TestButton() { //small button at the bottom of the page
+  return (
+    <button>
+    press me !
+    </button>
+  )
+}
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+       <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+           InfinitePath
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img src={profileimg} className="App-profileimg" alt="profileimg" />
       </header>
+      <TestButton />
     </div>
   );
 }
