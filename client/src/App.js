@@ -16,9 +16,9 @@ function App() {
       <header className="App-header">
        <img src={logo} className="App-logo" alt="logo" />
         <p>
-           InfinitePath
+           InfinitePath 
         </p>
-        <img src={profileimg} className="App-profileimg" alt="profileimg" />
+        <img src={profileimg} className="App-profileimg" alt="profileimg" /> 
       </header>
       <TestButton />
     </div>
