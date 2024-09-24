@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import profileimg from './profileimg.svg';
+import mainpicture from './main_picture.jpg';
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -25,11 +26,15 @@ function App() {
         </p>
       <img src={profileimg} className="App-profileimg w-20 h-20 mt-4" alt="profileimg" />
       </header>
+
+      <img src={mainpicture} className="App-mainpicture" alt="mainpicture" />
+
       <TestButton />
       <Link to="/login">Log In</Link>
         <Routes>
           <Route path="/login" element={<Login />} />
         </Routes>
+
     </div>
     </BrowserRouter>
   );
