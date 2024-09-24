@@ -1,1 +1,3 @@
 backend/apikey.json
+backend/__pycache__/
+backend/api/__pycache__/
