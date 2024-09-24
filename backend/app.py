@@ -2,7 +2,7 @@ from flask import Flask, send_from_directory
 from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS #comment this on deployment
 from api.story import storyApi
-from api.childProfileLeveling import childProfileLevelingApi
+from api.image import imageApi
 from api.tts import ttsApi
 from api.companion import companionApi
 from api.diagnosis import diagnosisApi
@@ -17,6 +17,6 @@ def serve(path):
 
 api.add_resource(storyApi, '/story/')
 api.add_resource(ttsApi, '/tts/')
-api.add_resource(childProfileLevelingApi, '/childProfileLeveling/')
+api.add_resource(imageApi, '/image/')
 api.add_resource(companionApi, '/companion/')
 api.add_resource(diagnosisApi, '/diagnosis/')
