@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 import profileimg from './profileimg.svg';
 import mainpicture from './main_picture.jpg';
+import googleIcon from './google-icon.png'; // Social login icons
+import appleIcon from './apple-logo.png';
+import facebookIcon from './facebook_logo.png';
 import { Routes, Route } from 'react-router-dom';
 import Login from './login';
+import ChildProfile from './childProfile';
 
 function TestButton() { //small button at the bottom of the page
     return (
@@ -14,8 +18,28 @@ function TestButton() { //small button at the bottom of the page
     )
   }
 
+function SignUpButton(){
+  return (
+    <button className="bg-blue-500 text-white py-1 px-3 rounded">
+    <Link to="/childProfile">Sign Up</Link>
+    </button>
+  )
+}
+
 function Homepage(){
-    return(
+    
+  //SCROLLING FROM JOIN FREE TO SIGN UP 
+  const handleScrollToSignup = () => {
+    const signUpSection = document.getElementById("signup-section");
+    if(signUpSection) {
+      signUpSection.scrollIntoView({ behavior: "smooth" });
+    } else {
+      console.error("Signup section not found");
+    }
+    
+  }
+  
+  return(
             <div className="App">
             <header className="App-header bg-gray-800 p-4">
             <img src={logo} className="App-logo w-32 h-22" alt="logo" />
@@ -26,10 +50,59 @@ function Homepage(){
             <img src={profileimg} className="App-profileimg w-20 h-20 mt-4" alt="profileimg" />
             </header>
 
-            <img src={mainpicture} className="App-mainpicture" alt="mainpicture" />
             <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/childProfile" element={<ChildProfile />} />
             </Routes>
+
+  
+            {/* WORDS ON MAIN IMAGE */}
+            <section className="hero-section">
+            <img src={mainpicture} className="App-mainpicture" alt="mainpicture" />
+              <div className="hero-section"> 
+                <p>
+                Your child with ASD will receive personalized learning in traditional classroom subjects, social skills,
+                and essential life skills, all tailored to their unique strengths and needs.
+                </p>
+                <button className="hero-button" onClick={handleScrollToSignup}>Join for Free</button>
+              </div>
+            </section>
+
+            {/* SIGN-UP FORM */}
+            <section id="signup-section" className="signup-section">
+              <h2>SIGN UP</h2>
+              <form className="signup-form">
+                <input type="text" placeholder="Name" required />
+                <input type="email" placeholder="Email or Username*" required />
+                <input type="password" placeholder="Password*" required />
+                <SignUpButton />
+              </form>
+            
+            
+
+              <div className="social-login">
+                <p> Or sign up using:</p>
+                <img src={googleIcon} className="App-googleIcon w-10 h-10" alt="Google" />
+                <img src={appleIcon} className="App-appleIcon w-10 h-10" alt="Apple" />
+                <img src={facebookIcon} className="App-facebookIcon w-10 h-10" alt="Facebook" />
+              </div>
+            </section>
+
+            {/* MISSION  STATEMENT */}
+            <section className="mission-selection">
+              <h3>Where every child's potential unfolds</h3>
+              <p>
+              Our mission at InfinitePath is to empower children with autism by providing personalized, affordable learning
+              solutions that adapt to their unique needs. Using advanced AI, we create tailored educational plans across social, 
+              life, and academic skills, ensuring every child can thrive both in school and at home.
+              </p>
+            </section>
+
+            {/* CONTACT SECTION */}
+            <footer className="contact-section">
+              <p>CONTACT US</p>
+            </footer>
+
             </div>
     )
 }
