@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 function TestButton() { //small button at the bottom of the page
   return (
     <button className="bg-blue-500 text-white py-2 px-4 rounded">
-    press me !
+    <Link to="/login">Log In</Link>
     </button>
   )
 }
@@ -23,10 +23,9 @@ function App() {
         <p 
           className="text-4xl font-bold text-white">InfinitePath
         </p>
+      <TestButton />
       <img src={profileimg} className="App-profileimg w-20 h-20 mt-4" alt="profileimg" />
       </header>
-      <TestButton />
-      <Link to="/login">Log In</Link>
         <Routes>
           <Route path="/login" element={<Login />} />
         </Routes>
