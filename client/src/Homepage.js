@@ -12,7 +12,7 @@ import ChildProfile from './childProfile';
 
 function TestButton() { //small button at the bottom of the page
     return (
-      <button className="bg-blue-500 text-white py-1 px-3 rounded">
+      <button className="bg-blue-500 text-white py-.5 px-1.5 rounded">
       <Link to="/login">Log In</Link>
       </button>
     )
@@ -41,15 +41,19 @@ function Homepage(){
   
   return(
             <div className="App">
+            
             <header className="App-header bg-gray-800 p-4">
-            <img src={logo} className="App-logo w-32 h-22" alt="logo" />
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <img src={logo} className="App-logo w-22 h-22" alt="logo" />
              <p 
-                 className="text-4xl font-bold text-white">InfinitePath
-                </p>
+                className="text-2xl font-bold text-white ">InfinitePath
+              </p>
             <TestButton />
             <img src={profileimg} className="App-profileimg w-20 h-20 mt-4" alt="profileimg" />
+            </nav>
             </header>
-
+            
+            
             <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/childProfile" element={<ChildProfile />} />
