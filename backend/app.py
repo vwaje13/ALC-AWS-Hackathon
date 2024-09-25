@@ -5,7 +5,7 @@ from api.story import storyApi
 from api.image import imageApi
 from api.tts import ttsApi
 from api.companion import companionApi
-# from api.diagnosis import diagnosisApi
+from api.diagnosis import diagnosisApi
 import json
 from os import environ as env
 from urllib.parse import quote_plus, urlencode
