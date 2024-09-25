@@ -10,7 +10,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './login';
 import ChildProfile from './childProfile';
 
-function TestButton() { //small button at the bottom of the page
+function LoginButton() { //small button at the bottom of the page
     return (
       <button className="bg-blue-500 text-white py-.5 px-1.5 rounded">
       <Link to="/login">Log In</Link>
@@ -40,74 +40,82 @@ function Homepage(){
   }
   
   return(
-            <div className="App">
+    <div className="App">
+
+      {/* header */}
+    <header className="App-header bg-gray-800 p-4">
+    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+
+      {/* title/logo */}
+      <div className="flex items-center">
+        <img src={logo} className="App-logo w-22 h-22" alt="logo" />
+        <p className="ml-3 h-9 w-auto text-2xl font-bold text-white ">
+          InfinitePath
+        </p>
+      </div>
+
+      {/* right side */}
+      <div className="flex items-center space-x-5">
+        <LoginButton />
+        <img src={profileimg} className="App-profileimg top-8 right-0 h-16 w-16" alt="profileimg" />
+      </div>      
+    </nav>
+    </header>
+   
+   {/* routes */}
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/childProfile" element={<ChildProfile />} />
+    </Routes>
+    
             
-            <header className="App-header bg-gray-800 p-4">
-            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-            <img src={logo} className="App-logo w-22 h-22" alt="logo" />
-             <p 
-                className="text-2xl font-bold text-white ">InfinitePath
-              </p>
-            <TestButton />
-            <img src={profileimg} className="App-profileimg w-20 h-20 mt-4" alt="profileimg" />
-            </nav>
-            </header>
+    
+    {/* hero section (words on image) */}
+    <section className="hero-section">
+    <img src={mainpicture} className="App-mainpicture" alt="mainpicture" />
+    <div className="hero-section"> 
+      <p>
+        Your child with ASD will receive personalized learning in traditional classroom subjects, social skills,
+        and essential life skills, all tailored to their unique strengths and needs.
+      </p>
+    <button className="hero-button" onClick={handleScrollToSignup}>Join for Free</button>
+    </div>
+    </section>
+
+    {/* SIGN-UP FORM */}
+    <section id="signup-section" className="signup-section">
+    <h2>SIGN UP</h2>
+    <form className="signup-form">
+      <input type="text" placeholder="Name" required />
+      <input type="email" placeholder="Email or Username*" required />
+      <input type="password" placeholder="Password*" required />
+      <SignUpButton />
+    </form>
             
-            
-            <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/childProfile" element={<ChildProfile />} />
-            </Routes>
+    <div className="social-login">
+      <p> Or sign up using:</p>
+      <img src={googleIcon} className="App-googleIcon w-10 h-10" alt="Google" />
+      <img src={appleIcon} className="App-appleIcon w-10 h-10" alt="Apple" />
+      <img src={facebookIcon} className="App-facebookIcon w-10 h-10" alt="Facebook" />
+    </div>
+    </section>
 
-  
-            {/* WORDS ON MAIN IMAGE */}
-            <section className="hero-section">
-            <img src={mainpicture} className="App-mainpicture" alt="mainpicture" />
-              <div className="hero-section"> 
-                <p>
-                Your child with ASD will receive personalized learning in traditional classroom subjects, social skills,
-                and essential life skills, all tailored to their unique strengths and needs.
-                </p>
-                <button className="hero-button" onClick={handleScrollToSignup}>Join for Free</button>
-              </div>
-            </section>
+    {/* MISSION  STATEMENT */}
+    <section className="mission-selection">
+      <h3>Where every child's potential unfolds</h3>
+      <p>
+        Our mission at InfinitePath is to empower children with autism by providing personalized, affordable learning
+        solutions that adapt to their unique needs. Using advanced AI, we create tailored educational plans across social, 
+        life, and academic skills, ensuring every child can thrive both in school and at home.
+      </p>
+    </section>
 
-            {/* SIGN-UP FORM */}
-            <section id="signup-section" className="signup-section">
-              <h2>SIGN UP</h2>
-              <form className="signup-form">
-                <input type="text" placeholder="Name" required />
-                <input type="email" placeholder="Email or Username*" required />
-                <input type="password" placeholder="Password*" required />
-                <SignUpButton />
-              </form>
-            
-            
+    {/* CONTACT SECTION */}
+    <footer className="contact-section">
+      <p>CONTACT US</p>
+    </footer>
 
-              <div className="social-login">
-                <p> Or sign up using:</p>
-                <img src={googleIcon} className="App-googleIcon w-10 h-10" alt="Google" />
-                <img src={appleIcon} className="App-appleIcon w-10 h-10" alt="Apple" />
-                <img src={facebookIcon} className="App-facebookIcon w-10 h-10" alt="Facebook" />
-              </div>
-            </section>
-
-            {/* MISSION  STATEMENT */}
-            <section className="mission-selection">
-              <h3>Where every child's potential unfolds</h3>
-              <p>
-              Our mission at InfinitePath is to empower children with autism by providing personalized, affordable learning
-              solutions that adapt to their unique needs. Using advanced AI, we create tailored educational plans across social, 
-              life, and academic skills, ensuring every child can thrive both in school and at home.
-              </p>
-            </section>
-
-            {/* CONTACT SECTION */}
-            <footer className="contact-section">
-              <p>CONTACT US</p>
-            </footer>
-
-            </div>
+    </div>
     )
 }
 
