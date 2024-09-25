@@ -57,7 +57,7 @@ function Homepage(){
       {/* right side */}
       <div className="flex items-center space-x-5">
         <LoginButton />
-        <img src={profileimg} className="App-profileimg top-8 right-0 h-16 w-16" alt="profileimg" />
+        <img src={profileimg} className="App-profileimg top-4 right-0 h-16 w-16" alt="profileimg" />
       </div>      
     </nav>
     </header>

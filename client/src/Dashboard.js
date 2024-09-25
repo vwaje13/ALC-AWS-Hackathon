@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 import profileimg from './profileimg.svg';
 
@@ -15,26 +16,32 @@ function Dashboard() {
       </header>
 
       {/* Dashboard Tiles */}
-      <div className="dashboard-section">
-        <h1 className="text-4xl font-bold mb-8">Dashboard</h1>
+      <div className="dashboard-section grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+        <h1 className="text-4xl font-bold mb-8 text-center">Dashboard</h1>
 
+        {/* Life Skills Tile */}
+        <Link to="/life" className="tile">
+          <div className="dashboard-tile bg-blue-500 text-white py-8 px-4 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out">
+            <h2 className="text-3xl font-bold">Life Skills</h2>
+            <p>Enhance essential life skills</p>
+          </div>
+        </Link>
 
-        <div className="dashboard-tile bg-blue-500 text-white py-4 px-8 rounded mb-4">
-          <h2 className="text-2xl">Life Skills</h2>
-          <p>Enhance essential life skills</p>
-        </div>
+        {/* Social Skills Tile */}
+        <Link to="/social" className="tile">
+          <div className="dashboard-tile bg-green-500 text-white py-8 px-4 rounded-lg shadow-lg hover:bg-green-600 transition duration-300 ease-in-out">
+            <h2 className="text-3xl font-bold">Social Skills</h2>
+            <p>Improve interaction and communication</p>
+          </div>
+        </Link>
 
-
-        <div className="dashboard-tile bg-green-500 text-white py-4 px-8 rounded mb-4">
-          <h2 className="text-2xl">Social Skills</h2>
-          <p>Improve interaction and communication</p>
-        </div>
-
-
-        <div className="dashboard-tile bg-purple-500 text-white py-4 px-8 rounded mb-4">
-          <h2 className="text-2xl">Academic Skills</h2>
-          <p>Excel in traditional academic subjects</p>
-        </div>
+        {/* Academic Skills Tile */}
+        <Link to="/academic" className="tile">
+          <div className="dashboard-tile bg-purple-500 text-white py-8 px-4 rounded-lg shadow-lg hover:bg-purple-600 transition duration-300 ease-in-out">
+            <h2 className="text-3xl font-bold">Academic Skills</h2>
+            <p>Excel in traditional academic subjects</p>
+          </div>
+        </Link>
       </div>
     </div>
   );

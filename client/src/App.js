@@ -5,6 +5,9 @@ import Login from './login';
 import Homepage from './Homepage'; 
 import ChildProfile from './childProfile';
 import Dashboard from './Dashboard';
+import LifeSkills from './LifeSkills';
+import AcademicSkills from './AcademicSkills';
+import SocialSkills from './SocialSkills';
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/childProfile" element={<ChildProfile />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/life" element={<LifeSkills />} />
+      <Route path="/academic" element={<AcademicSkills />} />
+      <Route path="/social" element={<SocialSkills />} />
     </Routes>
    </ BrowserRouter>
   );
