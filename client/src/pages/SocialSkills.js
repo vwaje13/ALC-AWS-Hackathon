@@ -30,57 +30,59 @@ function SocialSkills() {
 
   return (
     <div className="App">
-      {/* Header section with the same format as Homepage */}
+      {/* headerrrr */}
       <header className="bg-header-blue p-4">
         <nav className="flex items-center justify-between container mx-auto">
           <div className="flex items-center space-x-3">
-            <ImageButton/>
-            {/*<img src={logo} className="w-16 h-16" alt="logo" />*/}
+            <ImageButton /> {/* Use ImageButton here */}
             <p className="text-2xl font-bold text-white">InfinitePath</p>
           </div>
 
           <div className="flex items-center space-x-6">
-          <img src={profileimg} className="h-12 w-12 rounded-full" alt="profileimg" />
+            <img src={profileimg} className="h-12 w-12 rounded-full" alt="profileimg" />
           </div>
-
         </nav>
       </header>
 
-      {/* Back Button */}
-      <button
-        onClick={() => navigate(-1)} // Navigate to the previous page
-        className="bg-gray-500 text-white py-2 px-4 rounded-lg m-4 hover:bg-gray-600"
-      >
-        Back
-      </button>
-
-      {/* Social Skills Tiles */}
-      <div className="social-section grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+    {/* top */}
+      <div className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8 text-center">Social Skills</h1>
 
-        {/* Quiz Tile */}
-        <Link to="/quiz" className="tile">
-          <div className="social-tile bg-red-500 text-white py-8 px-4 rounded-lg shadow-lg hover:bg-red-600 transition duration-300 ease-in-out">
-            <h2 className="text-3xl font-bold">Quiz</h2>
-            <p>Test your social skills</p>
-          </div>
-        </Link>
+      {/* quiz */}
+        <div className="flex flex-col space-y-4 mb-8">
+          <Link to="/quiz" className="w-full">
+            <div className="bg-red-500 text-white py-8 px-4 rounded-lg shadow-lg hover:bg-red-600 transition duration-300 ease-in-out text-center">
+              <h2 className="text-3xl font-bold">Quiz</h2>
+              <p>Test your knowledge</p>
+            </div>
+          </Link>
 
-        {/* Story Tile */}
-        <Link to="/story" className="tile">
-          <div className="social-tile bg-yellow-500 text-white py-8 px-4 rounded-lg shadow-lg hover:bg-yellow-600 transition duration-300 ease-in-out">
-            <h2 className="text-3xl font-bold">Story</h2>
-            <p>Learn social skills through stories</p>
-          </div>
-        </Link>
+        {/* story */}
+          <Link to="/story" className="w-full">
+            <div className="bg-yellow-500 text-white py-8 px-4 rounded-lg shadow-lg hover:bg-yellow-600 transition duration-300 ease-in-out text-center">
+              <h2 className="text-3xl font-bold">Story</h2>
+              <p>Engage through interactive stories</p>
+            </div>
+          </Link>
 
-        {/* Companion Tile */}
-        <Link to="/companion" className="tile">
-          <div className="social-tile bg-blue-500 text-white py-8 px-4 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out">
-            <h2 className="text-3xl font-bold">Companion</h2>
-            <p>Get guidance from our AI companion</p>
-          </div>
-        </Link>
+        {/* companion */}
+          <Link to="/companion" className="w-full">
+            <div className="bg-body-blue text-white py-8 px-4 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out text-center">
+              <h2 className="text-3xl font-bold">Companion</h2>
+              <p>Get guidance from our AI companion</p>
+            </div>
+          </Link>
+        </div>
+
+      {/* back button */}
+        <div className="text-center">
+          <Link
+            to="/dashboard" // Use a Link to redirect to the dashboard
+            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out"
+          >
+            Back to Dashboard
+          </Link>
+        </div>
       </div>
     </div>
   );
