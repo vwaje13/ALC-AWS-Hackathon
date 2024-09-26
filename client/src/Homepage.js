@@ -40,7 +40,7 @@ function Homepage() {
   return (
     <div className="App">
       {/* Header */}
-      <header className="bg-gray-800 p-4">
+      <header className="bg-header-blue p-4">
         <nav className="flex items-center justify-between container mx-auto">
           <div className="flex items-center space-x-3">
             <img src={logo} className="w-16 h-16" alt="logo" />
@@ -61,10 +61,10 @@ function Homepage() {
 
       {/* Hero Section */}
       <section className="relative">
-        <img src={mainpicture} className="w-full h-screen object-cover" alt="main" />
+        <img src={mainpicture} className="w-full h-88 object-cover" alt="main" />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center">
           <p className="text-white text-4xl md:text-5xl font-bold">
-            Personalized Learning for Children with Autism
+            Learning without limits for extrordinary minds
           </p>
           <p className="text-white text-lg mt-4 max-w-xl">
             Tailored educational plans across social, life, and academic skills, ensuring your child thrives.

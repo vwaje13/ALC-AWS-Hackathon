@@ -3,17 +3,44 @@ import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import logo from './logo.svg';
 import profileimg from './profileimg.svg';
 
+function ImageButton() {
+  const imageButton = (src, alt, to) => (
+    <Link 
+      to={to} // Changed href to 'to' for react-router Link
+    >
+      <img // Replaced 'Logo' with 'img'
+        src={src} // Correct usage for img src
+        alt={alt}
+        className="w-full h-half object-cover"
+      />
+      <span className="sr-only">{alt}</span> {/* For screen readers */}
+    </Link>
+  );
+
+  return (
+    <div>
+      {imageButton(logo, 'Go to homepage', '/')} 
+    </div>
+  );
+}
+
 function AcademicSkills() {
   const navigate = useNavigate(); // Define navigate
 
   return (
     <div className="App">
       {/* Header section with the same format as Homepage */}
-      <header className="App-header bg-gray-800 p-4">
-        <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-          <img src={logo} className="App-logo w-22 h-22" alt="logo" />
-          <p className="text-2xl font-bold text-white">InfinitePath</p>
-          <img src={profileimg} className="App-profileimg w-20 h-20 mt-4" alt="profileimg" />
+      <header className="bg-header-blue p-4">
+        <nav className="flex items-center justify-between container mx-auto">
+          <div className="flex items-center space-x-3">
+            <ImageButton/>
+            {/*<img src={logo} className="w-16 h-16" alt="logo" />*/}
+            <p className="text-2xl font-bold text-white">InfinitePath</p>
+          </div>
+
+          <div className="flex items-center space-x-6">
+          <img src={profileimg} className="h-12 w-12 rounded-full" alt="profileimg" />
+          </div>
         </nav>
       </header>
 
