@@ -1,13 +1,13 @@
-import './App.css';
+import './styles/App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './login'; 
-import Homepage from './Homepage'; 
-import ChildProfile from './childProfile';
-import Dashboard from './Dashboard';
-import LifeSkills from './LifeSkills';
-import AcademicSkills from './AcademicSkills';
-import SocialSkills from './SocialSkills';
+import Login from './pages/login'; 
+import Homepage from './pages/Homepage'; 
+import ChildProfile from './pages/childProfile';
+import Dashboard from './pages/Dashboard';
+import LifeSkills from './pages/LifeSkills';
+import AcademicSkills from './pages/AcademicSkills';
+import SocialSkills from './pages/SocialSkills';
 
 function App() {
   return (

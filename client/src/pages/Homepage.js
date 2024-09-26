@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from './logo.svg';
-import profileimg from './profileimg.svg';
-import mainpicture from './main_picture.jpg';
-import googleIcon from './google-icon.png'; 
-import appleIcon from './apple-logo.png';
-import facebookIcon from './facebook_logo.png';
+import logo from '../assets/logo.svg';
+import profileimg from '../assets/profileimg.svg';
+import mainpicture from '../assets/main_picture.jpg';
+import googleIcon from '../assets/google-icon.png'; 
+import appleIcon from '../assets/apple-logo.png';
+import facebookIcon from '../assets/facebook_logo.png';
 import { Routes, Route } from 'react-router-dom';
 import Login from './login';
 import ChildProfile from './childProfile';

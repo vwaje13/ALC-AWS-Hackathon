@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from './logo.svg';
-import profileimg from './profileimg.svg';
-import googleIcon from './google-icon.png'; // Social login icons
-import appleIcon from './apple-logo.png';
-import facebookIcon from './facebook_logo.png';
+import logo from '../assets/logo.svg';
+import profileimg from '../assets/profileimg.svg';
+import googleIcon from '../assets/google-icon.png'; // Social login icons
+import appleIcon from '../assets/apple-logo.png';
+import facebookIcon from '../assets/facebook_logo.png';
 
 function LoginButton() {
   return (
