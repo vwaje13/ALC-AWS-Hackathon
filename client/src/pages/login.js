@@ -39,7 +39,7 @@ function ImageButton() {
 //new file for the page
 function Login() {
     return (
-      <div>
+      <div className="min-h-screen bg-gray-100">
         <div className="App">
         <header className="bg-header-blue p-4">
         <nav className="flex items-center justify-between container mx-auto">
@@ -52,74 +52,74 @@ function Login() {
           <div className="flex items-center space-x-6">
           <img src={profileimg} className="h-12 w-12 rounded-full" alt="profileimg" />
           </div>
-
         </nav>
-      </header>
-      </div>
+        </header>
+        </div>
 
-        {/*<div className="flex h-screen">
-        Left Side - Image 
+<main className="flex container mx-auto mt-10">
         <div className="w-1/2 flex justify-center items-center">
-          <img src={mainpicture} alt="Turtle" className="w-3/4 h-auto" />
-        </div> */}
+          <img src={turtleImage} alt="Turtle reading" className="w-3/4 h-auto" />
+        </div>
 
-        {/* Right Side - Login Form */}
         <div className="w-1/2 flex justify-center items-center">
-          <div className="w-2/3 max-w-md">
-            <h1 className="text-4xl font-bold mb-8 text-gray-800">Log In</h1>
+          <div className="w-2/3 max-w-md bg-white p-8 rounded-lg shadow-md">
+            <h1 className="text-3xl font-bold mb-6 text-gray-800">Log In</h1>
 
-            {/* Email Input */}
             <div className="mb-4">
-              <label className="block text-sm font-bold mb-2" htmlFor="email">
+              <label className="block text-sm font-medium mb-2" htmlFor="email">
                 Email or Username*
               </label>
               <input
                 id="email"
                 type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter your email or username"
               />
             </div>
 
-            {/* Password Input */}
             <div className="mb-6">
-              <label className="block text-sm font-bold mb-2" htmlFor="password">
+              <label className="block text-sm font-medium mb-2" htmlFor="password">
                 Password*
               </label>
               <input
                 id="password"
                 type="password"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter your password"
               />
             </div>
 
-            {/* Forgot Password */}
             <div className="mb-6 text-right">
-              <Link to="/forgot-password" className="text-blue-500 text-sm">
+              <Link to="/" className="text-blue-500 text-sm hover:underline">
                 Forgot Password?
               </Link>
             </div>
 
-            {/* Log In Button */}
             <LoginButton />
 
-            {/* Sign Up */}
             <div className="mt-6 text-center text-sm">
-              <p>Don't have an account? <Link to="/signup" className="text-blue-500">Click here to sign up</Link></p>
+              <p>Don't have an account? <Link to="/signup" className="text-blue-500 hover:underline">Click here to sign up</Link></p>
             </div>
 
-            {/* Social Login */}
             <div className="mt-6 text-center">
-              <p className="mb-2">Or sign up using:</p>
+              <p className="text-sm text-gray-600 mb-4">Or sign up using:</p>
               <div className="flex justify-center space-x-4">
-                <img src={googleIcon} alt="Google" className="w-8 h-8" />
-                <img src={appleIcon} alt="Apple" className="w-8 h-8" />
-                <img src={facebookIcon} alt="Facebook" className="w-8 h-8" />
+                <button className="p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition duration-300">
+                  <img src={googleIcon} alt="Google" className="w-6 h-6" />
+                </button>
+                <button className="p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition duration-300">
+                  <img src={appleIcon} alt="Apple" className="w-6 h-6" />
+                </button>
+                <button className="p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition duration-300">
+                  <img src={facebookIcon} alt="Facebook" className="w-6 h-6" />
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
+    </div>
   );
-  }
-  
-  export default Login;
+}
+
+export default Login;

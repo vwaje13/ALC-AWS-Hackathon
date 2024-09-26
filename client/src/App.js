@@ -20,6 +20,7 @@ function App() {
       <Route path="/life" element={<LifeSkills />} />
       <Route path="/academic" element={<AcademicSkills />} />
       <Route path="/social" element={<SocialSkills />} />
+      
     </Routes>
    </ BrowserRouter>
   );
