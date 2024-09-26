@@ -44,18 +44,14 @@ function AcademicSkills() {
         </nav>
       </header>
 
-      {/* Back Button */}
-      <button
-        onClick={() => navigate(-1)} // Navigate to the previous page
-        className="bg-gray-500 text-white py-2 px-4 rounded-lg m-4 hover:bg-gray-600"
-      >
-        Back
-      </button>
+      
 
       {/* Academic Skills Tiles */}
       <div className="academic-section grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-        <h1 className="text-4xl font-bold mb-8 text-center">Academic Skills</h1>
-
+        <div>
+          <h1 className="text-4xl font-bold mb-8 text-center">Academic Skills</h1>
+        </div>
+        
         {/* Quiz Tile */}
         <Link to="/quiz" className="tile">
           <div className="academic-tile bg-red-500 text-white py-8 px-4 rounded-lg shadow-lg hover:bg-red-600 transition duration-300 ease-in-out">
@@ -80,6 +76,15 @@ function AcademicSkills() {
           </div>
         </Link>
       </div>
+
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)} // Navigate to the previous page
+        className="bg-blue-500 text-white py-2 px-4 rounded-lg m-20 hover:bg-gray-600"
+      >
+        Back to Dashboard
+      </button>
+
     </div>
   );
 }

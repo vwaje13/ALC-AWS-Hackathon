@@ -5,11 +5,14 @@ import profileimg from '../assets/profileimg.svg';
 import googleIcon from '../assets/google-icon.png'; // Social login icons
 import appleIcon from '../assets/apple-logo.png';
 import facebookIcon from '../assets/facebook_logo.png';
+import turtleImage from '../assets/turtle.svg';
+import ChildProfile from './childProfile';
+import { Routes, Route } from 'react-router-dom';
 
 function LoginButton() {
   return (
     <button className="bg-blue-500 text-white py-1.5 px-3 rounded w-full">
-      Log In
+      <Link to="/childProfile">Log In</Link>
     </button>
   );
 }
@@ -55,6 +58,10 @@ function Login() {
         </nav>
         </header>
         </div>
+
+        <Routes>
+          <Route path="/childProfile" element={<ChildProfile />} />
+        </Routes>
 
 <main className="flex container mx-auto mt-10">
         <div className="w-1/2 flex justify-center items-center">
