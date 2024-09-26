@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from './logo.svg';
-import profileimg from './profileimg.svg';
+import logo from '../assets/logo.svg';
+import profileimg from '../assets/profileimg.svg';
 
 function ImageButton() {
   const imageButton = (src, alt, to) => (
