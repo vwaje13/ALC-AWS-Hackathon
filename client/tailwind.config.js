@@ -10,6 +10,7 @@ module.exports = {
       },
       colors: {
         'header-blue': '#266Fe8',
+        'body-blue': '#4780E0'
       },
     },
   },
