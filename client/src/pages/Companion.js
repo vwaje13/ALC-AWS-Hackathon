@@ -1,8 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation} from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
 import animalImage from '../assets/turtle.svg'; // You'll need to add this image
+
+
+function Dashboard() {
+  const navigate = useNavigate();
+  // ... other state and ref declarations ...
+
+  const MyComponent = () => {
+    const location = useLocation();
+
+    const goBack = () => {
+      if (location.key !== "default") { // Check if there's a previous page
+        navigate(-1); 
+      } else {
+        navigate('/'); // Or navigate to your default page
+      }
+    };
+
+    return (
+      <button className="bg-gray-500 text-white px-4 py-2 rounded" onClick={goBack}>
+        Done
+      </button>
+    );
+  };
 
 function ImageButton() {
   const imageButton = (src, alt, to) => (
@@ -23,8 +46,6 @@ function ImageButton() {
   );
 }
 
-function Dashboard() {
-  const navigate = useNavigate();
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
@@ -186,12 +207,7 @@ function Dashboard() {
             </button>
           </div>
 
-          <button 
-            className="bg-gray-500 text-white px-4 py-2 rounded"
-            onClick={() => navigate('/life')}
-          >
-            Done
-          </button>
+          <MyComponent/>
         </div>
       </main>
 
@@ -200,6 +216,7 @@ function Dashboard() {
       </audio>
     </div>
   );
+
 }
 
 export default Dashboard;
