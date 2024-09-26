@@ -9,6 +9,7 @@ import LifeSkills from './pages/LifeSkills';
 import AcademicSkills from './pages/AcademicSkills';
 import SocialSkills from './pages/SocialSkills';
 import Companion from './pages/Companion'; 
+import Story from './pages/Story';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/academic" element={<AcademicSkills />} />
       <Route path="/social" element={<SocialSkills />} />
       <Route path="/companion" element={<Companion />} />
+      <Route path = "/story" element={<Story />} />
     </Routes>
    </ BrowserRouter>
   );
