@@ -14,7 +14,7 @@ from dotenv import find_dotenv, load_dotenv
 from flask import Flask, redirect, render_template, session, url_for
 from api.quizQuestions import quizQuestionsApi
 
-app = Flask(__name__, static_url_path='', static_folder='frontend/build')
+app = Flask(__name__, static_url_path='', static_folder='build')
 CORS(app) #comment this on deployment
 api = Api(app)
 
