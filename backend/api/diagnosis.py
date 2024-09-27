@@ -274,13 +274,6 @@ class diagnosisApi(Resource):
             """
             cursor.execute(update_query_academic, (academic_data, 'apple@apple.com'))
 
-            test_query = """
-                SELECT * FROM users
-            """
-            cursor.execute(test_query)
-            records = cursor.fetchall()
-            print(records)
-
             # Commit the transaction
             connection.commit()
 
@@ -298,4 +291,4 @@ class diagnosisApi(Resource):
                 connection.close()
 
         # Return success response
-        return {"message": "Data processed and stored successfully"}, 200
+        return {"social_data": social_data, "life_data": life_data, "academic_data": academic_data}, 200
