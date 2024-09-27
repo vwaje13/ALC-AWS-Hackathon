@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
-//import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-/*function useQuery() {
+function useQuery() {
   return new URLSearchParams(useLocation().search);
-}*/
+}
 
 function ImageButton() {
   const imageButton = (src, alt, to) => (
@@ -31,8 +31,9 @@ function ImageButton() {
 
 function Dashboard() {
   const [activeSkill, setActiveSkill] = useState('life');
-  /*const query = useQuery();
-  const email = query.get('email');*/
+  const query = useQuery();
+  const email = query.get('email');
+  const skill = query.get('skill');
 
   useEffect(() => {
     const savedSkill = localStorage.getItem('activeSkill');
@@ -117,7 +118,7 @@ function Dashboard() {
                 <div className="w-3/4 p-4 border-l">
                   <div className="space-y-4">
                     {activities[activeSkill].map((activity, index) => (
-                      <Link key={activity.id} to={`/${activeSkill}/${activity.id}?email=${encodeURIComponent(email)}`} className="block w-full">
+                      <Link key={activity.id} to={`/${activeSkill}/${activity.id}`} className="block w-full">
                         <div className={` p-20 rounded-lg ${activity.color} ${index === 2 ? 'border-2 ' : ''}`}>
                           <h3 className="text-xl text-black font-bold">{activity.name}</h3>
                           <p className="text-sm text-black">{activity.description}</p>
