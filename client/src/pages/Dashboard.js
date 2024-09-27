@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
 import { useLocation } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
