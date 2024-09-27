@@ -16,18 +16,6 @@ const Quiz = () => {
           choices: ["Setting daily goals", "Procrastination", "Ignoring deadlines", "Multitasking"],
           correct: "Setting daily goals"
         },
-        {
-          id: 2,
-          question: "How can you build self-discipline?",
-          choices: ["Rewarding yourself", "Avoiding challenges", "Blaming others", "Procrastinating"],
-          correct: "Rewarding yourself"
-        },
-        {
-          id: 3,
-          question: "What is a good time management strategy?",
-          choices: ["Setting daily goals", "Procrastination", "Ignoring deadlines", "Multitasking"],
-          correct: "Setting daily goals"
-        },
       ],
     },
     social: {
@@ -38,30 +26,6 @@ const Quiz = () => {
           choices: ["Nodding only", "Making assumptions", "Asking follow-up questions", "Interrupting frequently"],
           correct: "Asking follow-up questions"
         },
-        {
-          id: 2,
-          question: "How do you resolve a conflict in a group?",
-          choices: ["Ignoring the issue", "Yelling", "Active communication", "Letting it build up"],
-          correct: "Active communication"
-        },
-        {
-          id: 3,
-          question: "What is the key to active listening?",
-          choices: ["Nodding only", "Making assumptions", "Asking follow-up questions", "Interrupting frequently"],
-          correct: "Asking follow-up questions"
-        },
-        {
-          id: 4,
-          question: "How do you resolve a conflict in a group?",
-          choices: ["Ignoring the issue", "Yelling", "Active communication", "Letting it build up"],
-          correct: "Active communication"
-        },
-        {
-          id: 5,
-          question: "How do you resolve a conflict in a group?",
-          choices: ["Ignoring the issue", "Yelling", "Active communication", "Letting it build up"],
-          correct: "Active communication"
-        },
       ],
     },
     academic: {
@@ -71,30 +35,6 @@ const Quiz = () => {
           question: "What is the best way to take effective notes?",
           choices: ["Writing down everything", "Highlighting key points", "Not taking notes", "Only listening"],
           correct: "Highlighting key points"
-        },
-        {
-          id: 2,
-          question: "How do you manage study time for exams?",
-          choices: ["Cramming last minute", "Consistent daily study", "Skipping study sessions", "Only attending lectures"],
-          correct: "Consistent daily study"
-        },
-        {
-          id: 3,
-          question: "What is the best way to take effective notes?",
-          choices: ["Writing down everything", "Highlighting key points", "Not taking notes", "Only listening"],
-          correct: "Highlighting key points"
-        },
-        {
-          id: 4,
-          question: "How do you manage study time for exams?",
-          choices: ["Cramming last minute", "Consistent daily study", "Skipping study sessions", "Only attending lectures"],
-          correct: "Consistent daily study"
-        },
-        {
-          id: 5,
-          question: "How do you manage study time for exams?",
-          choices: ["Cramming last minute", "Consistent daily study", "Skipping study sessions", "Only attending lectures"],
-          correct: "Consistent daily study"
         },
       ],
     },
