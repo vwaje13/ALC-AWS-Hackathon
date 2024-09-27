@@ -41,14 +41,14 @@ function Dashboard() {
       { id: 'companion', name: 'Companion', description: 'Get guidance on life skills', color: 'bg-blue-500 hover:bg-blue-600' },
     ],
     social: [
-      { id: 'roleplay', name: 'Role Play', description: 'Practice social scenarios', color: 'bg-pink-500 hover:bg-pink-600' },
-      { id: 'discussion', name: 'Discussion', description: 'Engage in social topics', color: 'bg-indigo-500 hover:bg-indigo-600' },
-      { id: 'feedback', name: 'Feedback', description: 'Get insights on your social skills', color: 'bg-teal-500 hover:bg-teal-600' },
+      { id: 'quiz', name: 'Role Play', description: 'Practice social scenarios', color: 'bg-pink-500 hover:bg-pink-600' },
+      { id: 'story', name: 'Discussion', description: 'Engage in social topics', color: 'bg-indigo-500 hover:bg-indigo-600' },
+      { id: 'companion', name: 'Feedback', description: 'Get insights on your social skills', color: 'bg-teal-500 hover:bg-teal-600' },
     ],
     academic: [
-      { id: 'study', name: 'Study Session', description: 'Focus on academic subjects', color: 'bg-orange-500 hover:bg-orange-600' },
-      { id: 'practice', name: 'Practice Problems', description: 'Solve academic challenges', color: 'bg-cyan-500 hover:bg-cyan-600' },
-      { id: 'tutor', name: 'AI Tutor', description: 'Get help with academic topics', color: 'bg-lime-500 hover:bg-lime-600' },
+      { id: 'quiz', name: 'Study Session', description: 'Focus on academic subjects', color: 'bg-orange-500 hover:bg-orange-600' },
+      { id: 'story', name: 'Practice Problems', description: 'Solve academic challenges', color: 'bg-cyan-500 hover:bg-cyan-600' },
+      { id: 'companion', name: 'AI Tutor', description: 'Get help with academic topics', color: 'bg-lime-500 hover:bg-lime-600' },
     ],
   };
   return (
@@ -92,7 +92,7 @@ function Dashboard() {
           <div className="w-3/4 p-4">
             <div className="space-y-4">
               {activities[activeSkill].map((activity, index) => (
-                <Link key={activity.id} to={`/${activeSkill}/quiz`} className="block w-full">
+                <Link key={activity.id} to={`/${activeSkill}/${activity.id}`} className="block w-full">
                   <div className={` p-4 rounded-lg ${activity.color} ${index === 2 ? 'border-2 ' : ''}`}>
                     <h3 className="text-xl text-black font-bold">{activity.name}</h3>
                     <p className="text-sm text-black">{activity.description}</p>
