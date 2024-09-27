@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
@@ -29,22 +29,32 @@ function ImageButton() {
 }
 
 function Story() {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const [storyFetched, setStoryFetched] = useState(false); // State to track if the story has been fetched
+
+
   const navigate = useNavigate();
   const query = useQuery();
   const email = query.get('email');
   const { skill } = useParams(); // Extract skill and activity from URL
-  axios.post('http://localhost:5000/story/', {
-    skill: skill,
-    email: email
-    }).then(response => 
-      {
-        
+  useEffect(() => {
+    if (!storyFetched) {
+    axios.post('http://localhost:5000/story/', {
+      topic: skill,
+      email: email
+    }).then(response => {
+      setTitle(response.data.title);
+      setBody(response.data.body);
+      setStoryFetched(true);
+    }).catch(error => {
+      console.error('There was an error fetching the story!', error);
     });
-    
+  }
+  }, [skill, email, storyFetched]); // Dependencies array
+  
   
   // These would typically come from your backend
-  const storyTitle = "The Adventure of the Curious Cat";
-  const storyContent = "Once upon a time, in a cozy little house at the end of Maple Street, there lived a cat named Whiskers. Whiskers was no ordinary cat; he was the most curious feline in the whole neighborhood. Every day, he would find new and exciting things to explore...";
   const storyImages = [
     "/placeholder.svg?height=200&width=300",
     "/placeholder.svg?height=200&width=300",
@@ -73,7 +83,7 @@ function Story() {
           Back
         </button>
 
-        <h1 className="text-3xl font-bold mb-6">{storyTitle}</h1>
+        <h1 className="text-3xl font-bold mb-6">{title}</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           {storyImages.map((src, index) => (
@@ -87,7 +97,7 @@ function Story() {
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-6">
-          <p className="text-lg leading-relaxed">{storyContent}</p>
+          <p className="text-lg leading-relaxed">{body}</p>
         </div>
       </main>
     </div>
