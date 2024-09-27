@@ -234,12 +234,14 @@ class diagnosisApi(Resource):
         parser.add_argument('social_response', type=str)
         parser.add_argument('life_response', type=str)
         parser.add_argument('academic_response', type=str)
+        parser.add_argument('email', type=str)
         args = parser.parse_args()
 
         # Get the responses from the request
         social_text = args['social_response']
         life_text = args['life_response']
         academic_text = args['academic_response']
+        email = args['email']
 
         # Process and store the data
         social_data = self.store_into_db(social_text)
@@ -256,7 +258,7 @@ class diagnosisApi(Resource):
                 SET "socialWords" = %s
                 WHERE email = %s
             """
-            cursor.execute(update_query_social, (social_data, 'apple@apple.com'))
+            cursor.execute(update_query_social, (social_data, email))
 
             # Update lifeWords column in the users table
             update_query_life = """
@@ -264,7 +266,7 @@ class diagnosisApi(Resource):
                 SET "lifeWords" = %s
                 WHERE email = %s
             """
-            cursor.execute(update_query_life, (life_data, 'apple@apple.com'))
+            cursor.execute(update_query_life, (life_data, email))
 
             # Update academicWords column in the users table
             update_query_academic = """
@@ -272,7 +274,7 @@ class diagnosisApi(Resource):
                 SET "academicWords" = %s
                 WHERE email = %s
             """
-            cursor.execute(update_query_academic, (academic_data, 'apple@apple.com'))
+            cursor.execute(update_query_academic, (academic_data, email))
 
             # Commit the transaction
             connection.commit()
