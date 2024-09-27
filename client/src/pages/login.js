@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
@@ -8,19 +8,8 @@ import facebookIcon from '../assets/facebook_logo.png';
 import turtleImage from '../assets/turtle.svg';
 import Dashboard from './Dashboard';
 import { Routes, Route } from 'react-router-dom';
+import axios from 'axios';
 
-function LoginButton() {
-  return (
-    <button className="bg-blue-500 text-white py-1.5 px-3 rounded w-full">
-      <Link 
-        to="/dashboard" 
-        className="block w-full h-full text-center"
-      >
-        Log In
-      </Link>
-    </button>
-  );
-}
 
 function ImageButton() {
   const imageButton = (src, alt, to) => (
@@ -46,6 +35,46 @@ function ImageButton() {
 
 //new file for the page
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const databaseChecker = (e) => {
+
+    e.preventDefault(); //Prevent page refresh
+    setLoading(true); //So the user can see it's loading
+    setError(''); //Clear previous error messages
+    
+    console.log("Hello World!ADlaksjdlkaskjdlkasd")
+
+    //Actual call here
+    axios.post('http://localhost:5000/logincheck/', {
+      email: email,
+      password: password
+    })
+    .then(response => {
+  
+      if (response.status === 200) {
+        //redirect to dashboard
+      } 
+  
+      else {
+        setError('Error: Login not recognized');
+      }
+  
+      setLoading(false);
+    })
+  
+    //error catching
+    .catch(error => {
+      console.log(error);
+      setError('Error: Failed to check login');
+      setLoading(false);
+    });
+  };
+  
+
     return (
       <div className="min-h-screen bg-gray-100">
         <div className="App">
@@ -76,16 +105,20 @@ function Login() {
         <div className="w-1/2 flex justify-center items-center">
           <div className="w-2/3 max-w-md bg-white p-8 rounded-lg shadow-md">
             <h1 className="text-3xl font-bold mb-6 text-gray-800">Log In</h1>
-
+            <form onSubmit={databaseChecker}>
             <div className="mb-4">
+
               <label className="block text-sm font-medium mb-2" htmlFor="email">
-                Email or Username*
+                Email*
               </label>
               <input
                 id="email"
                 type="text"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your email or username"
+                placeholder="Enter your email"
+                name="artist-name" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -98,16 +131,20 @@ function Login() {
                 type="password"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your password"
+                name="artist-name" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
+            <button type="submit" className="bg-blue-500 text-white py-3 px-3 rounded w-full"></button>
+
+            </form>
             <div className="mb-6 text-right">
               <Link to="/" className="text-blue-500 text-sm hover:underline">
                 Forgot Password?
               </Link>
             </div>
-
-            <LoginButton />
 
             <div className="mt-6 text-center text-sm">
               <p>Don't have an account? <Link to="/signup" className="text-blue-500 hover:underline">Click here to sign up</Link></p>
