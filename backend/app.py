@@ -6,6 +6,7 @@ from api.image import imageApi
 from api.tts import ttsApi
 from api.companion import companionApi
 from api.diagnosis import diagnosisApi
+from api.logincheck import loginChecker
 import json
 from os import environ as env
 from urllib.parse import quote_plus, urlencode
@@ -26,8 +27,9 @@ api.add_resource(storyApi, '/story/')
 api.add_resource(ttsApi, '/tts/')
 api.add_resource(imageApi, '/image/')
 api.add_resource(companionApi, '/companion/')
-# api.add_resource(diagnosisApi, '/diagnosis/')
+api.add_resource(diagnosisApi, '/diagnosis/')
 api.add_resource(quizQuestionsApi, '/quizQuestions/')
+api.add_resource(loginChecker, '/logincheck/')
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
