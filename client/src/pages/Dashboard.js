@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 function useQuery() {
-function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
@@ -36,7 +35,7 @@ function Dashboard() {
   const query = useQuery();
   const email = query.get('email');
   const skill = query.get('skill');
-  
+
   useEffect(() => {
     const savedSkill = localStorage.getItem('activeSkill');
     if (savedSkill) {
