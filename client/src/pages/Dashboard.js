@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
 import { AutoSizer } from "react-virtualized";
-
+import { useLocation } from 'react-router-dom';
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 function ImageButton() {
   const imageButton = (src, alt, to) => (
@@ -28,6 +31,8 @@ function ImageButton() {
 
 function Dashboard() {
   const [activeSkill, setActiveSkill] = useState('life');
+  const query = useQuery();
+  const email = query.get('email');
 
   useEffect(() => {
     const savedSkill = localStorage.getItem('activeSkill');
