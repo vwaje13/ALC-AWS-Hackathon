@@ -4,24 +4,16 @@ import spacy
 from textblob import TextBlob
 import json
 import pprint
+import psycopg2
 from db import get_db_connection  # Import the DB connection function from ../db.py
 
-
 class diagnosisApi(Resource):
-    def post(self):
-        
-        # Get the db connection
-        connection = get_db_connection()
 
-        # Parse incoming request
-        parser = reqparse.RequestParser()
-        parser.add_argument('diag_response', type=str)
-        args = parser.parse_args()
-        text = args['diag_response']
+    def store_into_db(self, text):
         if text is None:
             return {"error": "No response provided"}, 400
 
-            # Load spaCy English model
+        # Load spaCy English model
         nlp = spacy.load('en_core_web_sm')
 
         # Step 1: Text Preprocessing
@@ -224,20 +216,86 @@ class diagnosisApi(Resource):
                 'Context': context
             }
 
-            # Add to data list add to db!!!!
+            # Add to data list
             data.append(entry)
 
-        # Now, we can store data in JSON format
-        # For demonstration, we'll print the data
-        
-        print("Structured Data:")
-        pprint.pprint(data)
+        # Convert to JSON format
+        data_json = json.dumps(data, indent=2)
 
-        # Optionally, save the data to a JSON file
-        with open('child_skills.json', 'w') as f:
-            json.dump(data, f, indent=2)
-            
+        # Now, we can return the processed data
+        return data_json
 
+    def post(self):
+        # Get the db connection
+        connection = get_db_connection()
 
+        # Parse incoming request
+        parser = reqparse.RequestParser()
+        parser.add_argument('social_response', type=str)
+        parser.add_argument('life_response', type=str)
+        parser.add_argument('academic_response', type=str)
+        args = parser.parse_args()
 
-        return jsonify(meaningful_words)
+        # Get the responses from the request
+        social_text = args['social_response']
+        life_text = args['life_response']
+        academic_text = args['academic_response']
+
+        # Process and store the data
+        social_data = self.store_into_db(social_text)
+        life_data = self.store_into_db(life_text)
+        academic_data = self.store_into_db(academic_text)
+
+        # Update the database
+        try:
+            cursor = connection.cursor()
+
+            # Update socialWords column in the users table
+            update_query_social = """
+                UPDATE users
+                SET "socialWords" = %s
+                WHERE email = %s
+            """
+            cursor.execute(update_query_social, (social_data, 'apple@apple.com'))
+
+            # Update lifeWords column in the users table
+            update_query_life = """
+                UPDATE users
+                SET "lifeWords" = %s
+                WHERE email = %s
+            """
+            cursor.execute(update_query_life, (life_data, 'apple@apple.com'))
+
+            # Update academicWords column in the users table
+            update_query_academic = """
+                UPDATE users
+                SET "academicWords" = %s
+                WHERE email = %s
+            """
+            cursor.execute(update_query_academic, (academic_data, 'apple@apple.com'))
+
+            test_query = """
+                SELECT * FROM users
+            """
+            cursor.execute(test_query)
+            records = cursor.fetchall()
+            print(records)
+
+            # Commit the transaction
+            connection.commit()
+
+            # Close the cursor
+            cursor.close()
+
+        except Exception as e:
+            # Handle exceptions, e.g., log the error
+            print(f"Database update error: {e}")
+            return {"error": "Database update failed"}, 500
+
+        finally:
+            # Close the database connection
+            if connection:
+                connection.close()
+
+        # Return success response
+        return {"message": "Data processed and stored successfully"}, 200
