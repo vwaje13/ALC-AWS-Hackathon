@@ -225,6 +225,6 @@ class storyApi(Resource):
         
         # Generate and return a single quiz question
         story_data = send_chat_message_for_single_question(topic, current_tag, dat)
-
+        # print("Here is the story data: " + story_data)
         # Return the quiz question as a JSON response
         return jsonify(story_data)

@@ -44,14 +44,15 @@ function Story() {
       topic: skill,
       email: email
     }).then(response => {
+      console.log('Story fetched!', response.data);
       setTitle(response.data.title);
       setBody(response.data.body);
-      setStoryFetched(true);
+      setStoryFetched(true)
     }).catch(error => {
       console.error('There was an error fetching the story!', error);
     });
   }
-  }, [skill, email, storyFetched]); // Dependencies array
+  }, []); // Dependencies array
   
   
   // These would typically come from your backend
