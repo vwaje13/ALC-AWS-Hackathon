@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// Quiz.js
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 const Quiz = () => {
@@ -60,7 +61,6 @@ const Quiz = () => {
       [questionId]: choice,
     });
   };
-
   return (
     <div className="container mx-auto px-4 py-8">
     <h1 className="text-4xl font-bold mb-8 text-center">
