@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link,  } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
 
@@ -26,7 +26,7 @@ function ImageButton() {
 }
 
 function SocialSkills() {
-  const navigate = useNavigate();
+  {/*const navigate = useNavigate();*/}
 
   return (
     <div className="App">

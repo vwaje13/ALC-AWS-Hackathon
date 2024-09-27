@@ -19,13 +19,14 @@ function App() {
       <Route path="/" element={<Homepage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/childProfile" element={<ChildProfile />} />
-      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/life" element={<LifeSkills />} />
       <Route path="/academic" element={<AcademicSkills />} />
       <Route path="/social" element={<SocialSkills />} />
       <Route path="/companion" element={<Companion />} />
       <Route path = "/story" element={<Story />} />
-      <Route path="/quiz" element={<Quiz />} /> {/* Add routing for Quiz */}
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/:skill/quiz" element={<Quiz />} />
+      
     </Routes>
    </ BrowserRouter>
   );
