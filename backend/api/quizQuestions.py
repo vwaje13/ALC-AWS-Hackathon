@@ -3,6 +3,7 @@ from flask import jsonify
 import openai
 import json
 import psycopg2
+import random
 from db import get_db_connection
 
 class quizQuestionsApi(Resource):
@@ -30,13 +31,144 @@ class quizQuestionsApi(Resource):
         # Get the user's profile and currentTag from the database
         if topic == "life":
             column = "lifeWords"
+            tag_type = "lifeTag"
+            tags = [
+                'Hygiene',
+                'Dressing',
+                'Grooming',
+                'Cooking',
+                'Cleaning',
+                'Laundry',
+                'Time Management',
+                'Safety',
+                'Nutrition',
+                'First Aid',
+                'Organization',
+                'Toileting',
+                'Personal Space',
+                'Household Tasks',
+                'Sleep Routine',
+                'Food Choice',
+                'Dressing Appropriately',
+                'Emergency Skills',
+                'Self-Care',
+                'Table Manners',
+                'Brushing Teeth',
+                'Bathing',
+                'Locking Doors',
+                'Counting Money',
+                'Recycling',
+                'Sorting Laundry',
+                'Using an Alarm',
+                'Packing a Bag',
+                'Following a Recipe',
+                'Setting the Table',
+                'Pouring Drinks',
+                'Handwashing',
+                'Adjusting to Change',
+                'Personal Responsibility',
+                'Medication Management'
+            ]
         elif topic == "social":
             column = "socialWords"
+            tag_type = "socialTag"
+            tags = [
+                'Communication',
+                'Listening',
+                'Eye Contact',
+                'Sharing',
+                'Cooperation',
+                'Turn-Taking',
+                'Empathy',
+                'Conflict Resolution',
+                'Personal Boundaries',
+                'Greetings',
+                'Conversational Skills',
+                'Group Participation',
+                'Teamwork',
+                'Manners',
+                'Asking for Help',
+                'Expressing Emotions',
+                'Nonverbal Cues',
+                'Play Skills',
+                'Assertiveness',
+                'Friendships',
+                'Patience',
+                'Apologizing',
+                'Encouragement',
+                'Active Listening',
+                'Compliments',
+                'Following Rules',
+                'Role Playing',
+                'Assertive Communication',
+                'Negotiation',
+                'Social Cues',
+                'Handling Criticism',
+                'Expressing Needs',
+                'Listening to Others',
+                'Inviting Others',
+                'Dealing with Disappointment',
+                'Flexibility',
+                'Greeting Others',
+                'Saying Goodbye',
+                'Respect',
+                'Personal Space',
+                'Joining Conversations',
+                'Interpreting Body Language',
+                'Asking Questions',
+                'Giving Directions',
+                'Giving Feedback',
+                'Handling Rejection',
+                'Managing Anger',
+                'Handling Interruptions'
+            ]
         elif topic == "academic":
             column = "academicWords"
-
+            tag_type = "academicTag"
+            tags = [
+                'Reading',
+                'Writing',
+                'Math',
+                'Counting',
+                'Spelling',
+                'Vocabulary',
+                'Science',
+                'Problem-Solving',
+                'Phonics',
+                'Comprehension',
+                'Grammar',
+                'Storytelling',
+                'Fine Motor',
+                'Sorting',
+                'Geography',
+                'History',
+                'Memorization',
+                'Classification',
+                'Attention',
+                'Listening Comprehension',
+                'Creativity',
+                'Letter Recognition',
+                'Number Recognition',
+                'Colors',
+                'Shapes',
+                'Telling Time',
+                'Basic Addition',
+                'Basic Subtraction',
+                'Multiplication',
+                'Division',
+                'Word Problems',
+                'Reading Fluency',
+                'Reading Comprehension',
+                'Fact Recall',
+                'Drawing',
+                'Art Skills',
+                'Basic Biology',
+                'Earth Science',
+                'Social Studies',
+                'Measurement'
+            ]
         with connection.cursor() as cursor:
-            cursor.execute(f'SELECT "{column}", "currentTag" FROM users WHERE email = %s', (email,))
+            cursor.execute(f'SELECT "{column}", "{tag_type}" FROM users WHERE email = %s', (email,))
             result = cursor.fetchone()
 
         connection.close()
@@ -80,7 +212,6 @@ class quizQuestionsApi(Resource):
                     question = lines[0]
 
                 # Extracting the answer choices
-                # Extracting the answer choices
                 answers = {}
                 for line in lines:
                     if line.startswith("A)") or line.startswith("A."):
@@ -108,7 +239,24 @@ class quizQuestionsApi(Resource):
 
             except Exception as e:
                 return f"An error occurred: {str(e)}"
+        
+        # now update the tag in the database
+        """
+        Selects a random tag from the tuple of tags and updates the user's currentTag in the database.
+        """
+        # Select a random tag from the tuple
+        new_tag = random.choice(tags)
 
+        # Connect to the database
+        with connection.cursor() as cursor:
+            # Update the user's currentTag in the users table 
+            cursor.execute(
+            "UPDATE users SET currentTag = %s WHERE email = %s",
+            (new_tag, email)
+            )
+            connection.commit()
+        connection.close()
+        
         # Generate and return a single quiz question
         quiz_data = send_chat_message_for_single_question(topic, current_tag, dat)
 
