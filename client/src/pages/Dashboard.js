@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
+import { useLocation } from 'react-router-dom';
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 function ImageButton() {
   const imageButton = (src, alt, to) => (
@@ -27,6 +31,8 @@ function ImageButton() {
 
 function Dashboard() {
   const [activeSkill, setActiveSkill] = useState('life');
+  const query = useQuery();
+  const email = query.get('email');
 
   const skills = [
     { id: 'life', name: 'Life Skills', color: 'bg-blue-500', darkerColor: 'bg-blue-700' },
