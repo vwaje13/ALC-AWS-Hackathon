@@ -274,13 +274,6 @@ class diagnosisApi(Resource):
             """
             cursor.execute(update_query_academic, (academic_data, 'apple@apple.com'))
 
-            test_query = """
-                SELECT * FROM users
-            """
-            cursor.execute(test_query)
-            records = cursor.fetchall()
-            print(records)
-
             # Commit the transaction
             connection.commit()
 
