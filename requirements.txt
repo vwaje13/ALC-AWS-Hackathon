@@ -1,3 +1,5 @@
 flask
 react
-nltk
+spacy
+axios
+textblob
