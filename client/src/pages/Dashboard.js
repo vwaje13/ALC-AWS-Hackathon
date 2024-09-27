@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
-import { AutoSizer } from "react-virtualized";
-import { useLocation } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
 
-function useQuery() {
+/*function useQuery() {
   return new URLSearchParams(useLocation().search);
-}
+}*/
 
 function ImageButton() {
   const imageButton = (src, alt, to) => (
@@ -32,8 +31,8 @@ function ImageButton() {
 
 function Dashboard() {
   const [activeSkill, setActiveSkill] = useState('life');
-  const query = useQuery();
-  const email = query.get('email');
+  /*const query = useQuery();
+  const email = query.get('email');*/
 
   useEffect(() => {
     const savedSkill = localStorage.getItem('activeSkill');
@@ -55,7 +54,7 @@ function Dashboard() {
       { id: 'companion', name: 'Companion', description: 'Get guidance on life skills', color: 'bg-teal-300 hover:bg-teal-600' },
     ],
     social: [
-      { id: 'quiz', name: 'Role Play', description: 'Practice social scenarios', color: 'bg-pink-400 hover:bg-pink-500' },
+      { id: 'quiz', name: 'Act it Out', description: 'Practice social scenarios', color: 'bg-pink-400 hover:bg-pink-500' },
       { id: 'story', name: 'Discussion', description: 'Engage in social topics', color: 'bg-indigo-300 hover:bg-indigo-600' },
       { id: 'companion', name: 'Feedback', description: 'Get insights on your social skills', color: 'bg-teal-300 hover:bg-teal-600' },
     ],
@@ -95,40 +94,30 @@ function Dashboard() {
         
       
           <div >
-            <main className="flex-grow bg-white">
-              <div className="container mx-auto flex">
-                {/* Left section with skills and proficiency level */}
-                <div className="flex w-1/4 p-4 border-r">
-                  {/* Skill buttons */}
-                  <div className="w-1/2">
-                    {skills.map((skill) => (
-                      <button
-                        key={skill.id}
-                        onClick={() => handleSkillClick(skill.id)}
-                        className={`w-full text-left py-6 px-4 rounded-lg mb-4 transition duration-300 ease-in-out
-                         ${activeSkill === skill.id ? skill.darkerColor : skill.color}`}
-                      >
-                        <h3 className={`text-lg font-semibold ${activeSkill === skill.id ? 'text-black' : 'text-white'}`}>
-                        {skill.name}
-                        </h3>
-                      </button>
-                    ))}
-                  </div>
+          <main className="flex-grow bg-white">
+        <div className="container mx-auto flex">
+          {/* Left section with skills buttons */}
+          <div className="w-1/4 p-4 border-r"> {/* Keeping the border for separation */}
+            {/* Skill buttons stacked vertically */}
+            {skills.map((skill) => (
+              <button
+                key={skill.id}
+                onClick={() => handleSkillClick(skill.id)}
+                className={`w-full text-left py-6 px-4 rounded-lg mb-4 transition duration-300 ease-in-out
+                 ${activeSkill === skill.id ? skill.darkerColor : skill.color}`}
+              >
+                <h3 className={`text-lg font-semibold ${activeSkill === skill.id ? 'text-black' : 'text-white'}`}>
+                  {skill.name}
+                </h3>
+              </button>
+            ))}
+          </div>
 
 
-                  {/* Adjacent components before the vertical line 
-                  <div className="w-1/2 flex flex-col items-left justify-left">
-                    {/* Add your custom component here */}
-                    {/* You can use more sophisticated UI here based on skill progress 
-                    <div className="bg-green-400 text-white py-5 px-2 rounded-lg">Level 1</div>
-                  </div> */}
-                </div> 
-
-
-                <div className="min-h-screen w-3/4 p-4 border-l">
+                <div className="w-3/4 p-4 border-l">
                   <div className="space-y-4">
                     {activities[activeSkill].map((activity, index) => (
-                      <Link key={activity.id} to={`/${activeSkill}/${activity.id}`} className="block w-full">
+                      <Link key={activity.id} to={`/${activeSkill}/${activity.id}?email=${encodeURIComponent(email)}`} className="block w-full">
                         <div className={` p-20 rounded-lg ${activity.color} ${index === 2 ? 'border-2 ' : ''}`}>
                           <h3 className="text-xl text-black font-bold">{activity.name}</h3>
                           <p className="text-sm text-black">{activity.description}</p>

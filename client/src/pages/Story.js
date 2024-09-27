@@ -2,6 +2,12 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
+import { useLocation, useParams } from 'react-router-dom';
+import axios from 'axios';
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 function ImageButton() {
   const imageButton = (src, alt, to) => (
@@ -24,6 +30,17 @@ function ImageButton() {
 
 function Story() {
   const navigate = useNavigate();
+  const query = useQuery();
+  const email = query.get('email');
+  const { skill } = useParams(); // Extract skill and activity from URL
+  axios.post('http://localhost:5000/story/', {
+    skill: skill,
+    email: email
+    }).then(response => 
+      {
+        
+    });
+    
   
   // These would typically come from your backend
   const storyTitle = "The Adventure of the Curious Cat";
