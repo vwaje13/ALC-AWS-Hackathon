@@ -15,14 +15,13 @@ class loginChecker(Resource):
         args = parser.parse_args()
         email = args['email']
         password = args['password']
-
-
-        connection = get_db_connection()
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, password))
         
         if not email:
             return jsonify({"message": "Email is required"}), 400
         elif not password:
             return jsonify({"message": "Password is required"}), 400
         
+        connection = get_db_connection()
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, password))
+            # check if this returned anything, if did, return 200, if not, return 400

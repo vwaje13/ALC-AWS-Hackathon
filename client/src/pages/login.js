@@ -56,7 +56,8 @@ function Login() {
     .then(response => {
   
       if (response.status === 200) {
-        //redirect to dashboard
+        console.log("IT FUCKING WORKED!!!!OIASJDLKASHJDLAKSJD")
+        //redirect to dashboard and remove console.log
       } 
   
       else {
