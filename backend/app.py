@@ -7,6 +7,7 @@ from api.tts import ttsApi
 from api.companion import companionApi
 from api.diagnosis import diagnosisApi
 from api.logincheck import loginChecker
+from api.answerVerification import answerVerificationApi
 import json
 from os import environ as env
 from urllib.parse import quote_plus, urlencode
@@ -14,6 +15,7 @@ from authlib.integrations.flask_client import OAuth
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, redirect, render_template, session, url_for
 from api.quizQuestions import quizQuestionsApi
+from api.signUp import signUpApi
 
 app = Flask(__name__, static_url_path='', static_folder='build')
 CORS(app) #comment this on deployment
@@ -30,6 +32,8 @@ api.add_resource(companionApi, '/companion/')
 api.add_resource(diagnosisApi, '/diagnosis/')
 api.add_resource(quizQuestionsApi, '/quizQuestions/')
 api.add_resource(loginChecker, '/logincheck/')
+api.add_resource(answerVerificationApi, '/answerVerification/')
+api.add_resource(signUpApi, '/signUp/')
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
