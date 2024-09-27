@@ -11,6 +11,7 @@ import SocialSkills from './pages/SocialSkills';
 import Companion from './pages/Companion'; 
 import Story from './pages/Story';
 import Quiz from './pages/Quiz';
+import QuizCompletion from './pages/QuizCompletion';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path = "/:skill/story" element={<Story />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/:skill/quiz" element={<Quiz />} />
+      <Route path="/:skill/quiz/completion" element={<QuizCompletion />} />
       
     </Routes>
    </ BrowserRouter>

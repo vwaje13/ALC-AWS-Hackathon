@@ -1,9 +1,10 @@
 // Quiz.js
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Quiz = () => {
   const { skill } = useParams(); // Extract skill and activity from URL
+  const navigate = useNavigate()
   
   // Example question sets based on skill and activity
   const questions = {
@@ -12,12 +13,20 @@ const Quiz = () => {
         {
           id: 1,
           question: "What is a good time management strategy?",
-          choices: ["Setting daily goals", "Procrastination", "Ignoring deadlines", "Multitasking"]
+          choices: ["Setting daily goals", "Procrastination", "Ignoring deadlines", "Multitasking"],
+          correct: "Setting daily goals"
         },
         {
           id: 2,
           question: "How can you build self-discipline?",
-          choices: ["Rewarding yourself", "Avoiding challenges", "Blaming others", "Procrastinating"]
+          choices: ["Rewarding yourself", "Avoiding challenges", "Blaming others", "Procrastinating"],
+          correct: "Rewarding yourself"
+        },
+        {
+          id: 3,
+          question: "What is a good time management strategy?",
+          choices: ["Setting daily goals", "Procrastination", "Ignoring deadlines", "Multitasking"],
+          correct: "Setting daily goals"
         },
       ],
     },
@@ -26,12 +35,32 @@ const Quiz = () => {
         {
           id: 1,
           question: "What is the key to active listening?",
-          choices: ["Nodding only", "Making assumptions", "Asking follow-up questions", "Interrupting frequently"]
+          choices: ["Nodding only", "Making assumptions", "Asking follow-up questions", "Interrupting frequently"],
+          correct: "Asking follow-up questions"
         },
         {
           id: 2,
           question: "How do you resolve a conflict in a group?",
-          choices: ["Ignoring the issue", "Yelling", "Active communication", "Letting it build up"]
+          choices: ["Ignoring the issue", "Yelling", "Active communication", "Letting it build up"],
+          correct: "Active communication"
+        },
+        {
+          id: 3,
+          question: "What is the key to active listening?",
+          choices: ["Nodding only", "Making assumptions", "Asking follow-up questions", "Interrupting frequently"],
+          correct: "Asking follow-up questions"
+        },
+        {
+          id: 4,
+          question: "How do you resolve a conflict in a group?",
+          choices: ["Ignoring the issue", "Yelling", "Active communication", "Letting it build up"],
+          correct: "Active communication"
+        },
+        {
+          id: 5,
+          question: "How do you resolve a conflict in a group?",
+          choices: ["Ignoring the issue", "Yelling", "Active communication", "Letting it build up"],
+          correct: "Active communication"
         },
       ],
     },
@@ -40,12 +69,32 @@ const Quiz = () => {
         {
           id: 1,
           question: "What is the best way to take effective notes?",
-          choices: ["Writing down everything", "Highlighting key points", "Not taking notes", "Only listening"]
+          choices: ["Writing down everything", "Highlighting key points", "Not taking notes", "Only listening"],
+          correct: "Highlighting key points"
         },
         {
           id: 2,
           question: "How do you manage study time for exams?",
-          choices: ["Cramming last minute", "Consistent daily study", "Skipping study sessions", "Only attending lectures"]
+          choices: ["Cramming last minute", "Consistent daily study", "Skipping study sessions", "Only attending lectures"],
+          correct: "Consistent daily study"
+        },
+        {
+          id: 3,
+          question: "What is the best way to take effective notes?",
+          choices: ["Writing down everything", "Highlighting key points", "Not taking notes", "Only listening"],
+          correct: "Highlighting key points"
+        },
+        {
+          id: 4,
+          question: "How do you manage study time for exams?",
+          choices: ["Cramming last minute", "Consistent daily study", "Skipping study sessions", "Only attending lectures"],
+          correct: "Consistent daily study"
+        },
+        {
+          id: 5,
+          question: "How do you manage study time for exams?",
+          choices: ["Cramming last minute", "Consistent daily study", "Skipping study sessions", "Only attending lectures"],
+          correct: "Consistent daily study"
         },
       ],
     },
@@ -61,6 +110,13 @@ const Quiz = () => {
       [questionId]: choice,
     });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // You can add logic here to process the answers if needed
+    navigate(`/${skill}/quiz/completion`);
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
     <h1 className="text-4xl font-bold mb-8 text-center">
@@ -68,7 +124,7 @@ const Quiz = () => {
     </h1>
       <div className="bg-gray-100 p-4 rounded-lg shadow-lg">
         {activityQuestions.length > 0 ? (
-          <form>
+          <form onSubmit={handleSubmit}>
             {activityQuestions.map((q, index) => (
               <div key={q.id} className="mb-6">
                 <p className="text-lg font-bold">Question {index + 1}: {q.question}</p>
@@ -93,12 +149,12 @@ const Quiz = () => {
             ))}
 
             <div className="text-center mt-8">
-              <Link
-                to="/dashboard"
+              <button
+                type="submit"
                 className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out"
               >
-                Submit Quiz
-              </Link>
+               Submit Quiz
+              </button>
             </div>
           </form>
         ) : (

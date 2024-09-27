@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
@@ -9,7 +9,6 @@ import turtleImage from '../assets/turtle.svg';
 import Dashboard from './Dashboard';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-
 
 function ImageButton() {
   const imageButton = (src, alt, to) => (
@@ -35,7 +34,7 @@ function ImageButton() {
 
 //new file for the page
 function Login() {
-  const [email, setEmail] = useState('');
+  const [emailLocal, setEmailLocal] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -50,18 +49,17 @@ function Login() {
 
     //Actual call here
     axios.post('http://localhost:5000/logincheck/', {
-      email: email,
+      email: emailLocal,
       password: password
     })
-    .then(response => {
-  
+    .then(response => 
+      {
       if (response.status === 200) {
-        console.log("IT FUCKING WORKED!!!!OIASJDLKASHJDLAKSJD")
-        //redirect to dashboard and remove console.log
+        window.location.href = `/dashboard?email=${encodeURIComponent(emailLocal)}`;
       } 
   
       else {
-        setError('Error: Login not recognized');
+        setError(response.message);
       }
   
       setLoading(false);
@@ -69,8 +67,7 @@ function Login() {
   
     //error catching
     .catch(error => {
-      console.log(error);
-      setError('Error: Failed to check login');
+      alert(error);
       setLoading(false);
     });
   };
@@ -118,8 +115,8 @@ function Login() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your email"
                 name="artist-name" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={emailLocal}
+                onChange={(e) => setEmailLocal(e.target.value)}
               />
             </div>
 
@@ -138,7 +135,7 @@ function Login() {
               />
             </div>
 
-            <button type="submit" className="bg-blue-500 text-white py-3 px-3 rounded w-full"></button>
+            <button type="submit" className="bg-blue-500 text-white py-3 px-3 rounded w-full">Log In</button>
 
             </form>
             <div className="mb-6 text-right">
