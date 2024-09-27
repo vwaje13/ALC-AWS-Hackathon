@@ -171,8 +171,6 @@ class quizQuestionsApi(Resource):
             cursor.execute(f'SELECT "{column}", "{tag_type}" FROM users WHERE email = %s', (email,))
             result = cursor.fetchone()
 
-        connection.close()
-
         # Extract the first value (column data) and the current tag
         if result and result[0]:
             dat = json.dumps(result[0])  # Convert JSON object/list to string
@@ -247,14 +245,12 @@ class quizQuestionsApi(Resource):
         # Select a random tag from the tuple
         new_tag = random.choice(tags)
 
-        # Connect to the database
         with connection.cursor() as cursor:
-            # Update the user's currentTag in the users table 
-            cursor.execute(
-            "UPDATE users SET currentTag = %s WHERE email = %s",
-            (new_tag, email)
-            )
+            # Use double quotes for the column name to handle case sensitivity in PostgreSQL
+            query = f'UPDATE users SET "{tag_type}" = %s WHERE email = %s'
+            cursor.execute(query, (new_tag, email))
             connection.commit()
+
         connection.close()
         
         # Generate and return a single quiz question
