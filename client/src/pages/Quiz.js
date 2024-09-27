@@ -1,13 +1,47 @@
 // Quiz.js
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation} from 'react-router-dom';
+import axios from 'axios';
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const Quiz = () => {
   const { skill } = useParams(); // Extract skill and activity from URL
   const navigate = useNavigate()
+  const query = useQuery();
+  const email = query.get('email');
+  const questions = '';
+  axios.post('http://localhost:5000/quizQuestions/', {
+    topic: skill,
+    email: email
+    }).then(response => 
+      { 
+        const questions = {
+          [skill]: {
+            questions: response.data.quiz_question,
+            choices: response.data.answers,
+            correct: response.data.correct_answer
+          }
+        };
+    });
+  axios.post('http://localhost:5000/quizQuestions/', {
+    //need to get the selected answer and correct answer from frontend
+    //answer: 
+    //correct_answer: correct
+    }).then(response => 
+      { 
+        const questions = {
+          [skill]: {
+            //then backend gives a boolean response to whether correct or incorrect
+          }
+        };
+    });
   
+
   // Example question sets based on skill and activity
-  const questions = {
+  /*const questions = {
     life: {
       quiz: [
         {
@@ -38,7 +72,7 @@ const Quiz = () => {
         },
       ],
     },
-  };
+  };*/
 
   const activityQuestions = questions[skill]?.quiz || [];
 

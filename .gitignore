@@ -2,4 +2,5 @@ backend/apikey.json
 backend/__pycache__/
 backend/api/__pycache__/
 backend/imageApiKey.json
+backend/speechTextApiKey.json
 .env
