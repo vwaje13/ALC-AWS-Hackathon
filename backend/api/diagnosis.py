@@ -291,4 +291,4 @@ class diagnosisApi(Resource):
                 connection.close()
 
         # Return success response
-        return {"message": "Data processed and stored successfully"}, 200
+        return {"social_data": social_data, "life_data": life_data, "academic_data": academic_data}, 200
