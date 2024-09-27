@@ -4,6 +4,7 @@ import logo from '../assets/logo.svg';
 import profileimg from '../assets/profileimg.svg';
 import { AutoSizer } from "react-virtualized";
 import { useLocation } from 'react-router-dom';
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -92,9 +93,8 @@ function Dashboard() {
         </div>
       </div>
         
-      <AutoSizer>
-        {({ width, height }) =>
-          <div style={{ width, height }}>
+      
+          <div >
             <main className="flex-grow bg-white">
               <div className="container mx-auto flex">
                 {/* Left section with skills and proficiency level */}
@@ -140,8 +140,7 @@ function Dashboard() {
               </div>
             </main>
           </div>
-        }
-      </AutoSizer>
+        
     </div>
     
   );

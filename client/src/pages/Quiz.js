@@ -28,18 +28,6 @@ const Quiz = () => {
           choices: ["Setting daily goals", "Procrastination", "Ignoring deadlines", "Multitasking"],
           correct: "Setting daily goals"
         },
-        {
-          id: 4,
-          question: "What is a good time management strategy?",
-          choices: ["Setting daily goals", "Procrastination", "Ignoring deadlines", "Multitasking"],
-          correct: "Setting daily goals"
-        },
-        {
-          id: 5,
-          question: "What is a good time management strategy?",
-          choices: ["Setting daily goals", "Procrastination", "Ignoring deadlines", "Multitasking"],
-          correct: "Setting daily goals"
-        },
       ],
     },
     social: {
