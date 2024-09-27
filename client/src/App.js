@@ -22,8 +22,8 @@ function App() {
       <Route path="/life" element={<LifeSkills />} />
       <Route path="/academic" element={<AcademicSkills />} />
       <Route path="/social" element={<SocialSkills />} />
-      <Route path="/companion" element={<Companion />} />
-      <Route path = "/story" element={<Story />} />
+      <Route path="/:skill/companion" element={<Companion />} />
+      <Route path = "/:skill/story" element={<Story />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/:skill/quiz" element={<Quiz />} />
       
