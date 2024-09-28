@@ -48,7 +48,7 @@ function Login() {
     console.log("Hello World!ADlaksjdlkaskjdlkasd")
 
     //Actual call here
-    axios.post('http://localhost:5000/logincheck/', {
+    axios.post('http://127.0.0.1:5000/logincheck/', {
       email: emailLocal,
       password: password
     })

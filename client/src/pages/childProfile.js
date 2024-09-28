@@ -23,7 +23,7 @@ function ImageButton() {
 }
 
 function ChildProfile() {
-  const [currentSection, setCurrentSection] = useState(0)
+  const [currentSection, setCurrentSection] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     age: '',
@@ -34,75 +34,97 @@ function ChildProfile() {
     academicChallenges: '',
     socialSkills: '',
     communicationStyle: '',
-  })
+  });
 
   const sections = [
     {
-      title: "Basic Information",
+      title: "Life Skills",
       questions: [
-        { type: 'text', name: 'name', label: "What's your child's name?" },
-        { type: 'text', name: 'age', label: "How old is your child?" },
-        { type: 'radio', name: 'favoriteColor', label: "What's your child's favorite color?", options: ['Red', 'Blue', 'Green', 'Yellow'] },
-        { type: 'textarea', name: 'hobbies', label: "What are your child's hobbies?" },
+        { type: 'radio', name: 'independentDressing', label: "How independent is your child in getting dressed?", options: ['Fully independent in getting dressed.', 'Needs help with specific tasks, like zipping or buttoning.', 'Requires full assistance to get dressed.'] },
+        { type: 'radio', name: 'restroomUse', label: "Can your child independently use the restroom?", options: ['Uses the restroom independently without assistance.', 'Can use the restroom but requires occasional reminders.', 'Requires full assistance to use the restroom.'] },
+        { type: 'radio', name: 'hygieneIndependence', label: "How independent is your child in personal hygiene tasks (e.g., brushing teeth, handwashing)?", options: ['Fully independent in managing personal hygiene tasks.', 'Needs occasional reminders or assistance with hygiene tasks.', 'Requires full assistance with personal hygiene tasks.'] },
+        { type: 'radio', name: 'dailyRoutine', label: "How well does your child manage their daily routine (e.g., waking up, getting ready for school)?", options: ['Manages daily routine independently.', 'Needs reminders or assistance to manage daily routine.', 'Requires significant help to manage daily routine.'] },
+        { type: 'radio', name: 'routineChanges', label: "How does your child handle changes in routine or schedule?", options: ['Adapts easily to changes in routine or schedule.', 'Needs time to adjust to changes in routine or schedule.', 'Experiences distress or difficulty adapting to changes in routine.'] },
+        { type: 'radio', name: 'householdTasks', label: "Can your child perform basic household tasks (e.g., setting the table, sorting laundry)?", options: ['Performs household tasks independently.', 'Sometimes performs tasks but needs reminders or supervision.', 'Requires assistance to perform basic household tasks.'] },
+        { type: 'radio', name: 'feedingIndependence', label: "How independent is your child with feeding (e.g., using utensils, pouring drinks)?", options: ['Fully independent with feeding.', 'Needs help with some aspects, like cutting food or pouring drinks.', 'Requires significant assistance with feeding.'] },
+        { type: 'radio', name: 'managingBelongings', label: "How responsible is your child with managing personal belongings (e.g., packing a bag, organizing toys)?", options: ['Fully responsible for managing belongings.', 'Needs occasional reminders to manage belongings.', 'Requires full assistance to manage belongings.'] },
+        { type: 'radio', name: 'safetyTasks', label: "How well does your child manage safety-related tasks (e.g., locking doors, being cautious in dangerous situations)?", options: ['Manages safety tasks independently.', 'Needs reminders to manage safety tasks.', 'Requires full supervision to manage safety tasks.'] },
+        { type: 'radio', name: 'healthRoutines', label: "How well does your child follow basic health-related routines (e.g., taking medication, washing hands)?", options: ['Follows health-related routines independently.', 'Needs reminders to follow health-related routines.', 'Requires assistance to follow health-related routines.'] },
+        { type: 'textarea', name: 'lifeSkillExcellence', label: "What life skill (e.g., dressing, feeding, personal hygiene) does your child excel at the most? What areas do they struggle with the most?" },
+        { type: 'textarea', name: 'reactionNewEnvironments', label: "How does your child react to new environments (e.g., a new school or visiting a relative’s home)?" },
       ]
     },
     {
-      title: "Learning Profile",
+      title: "Social Skills",
       questions: [
-        { type: 'radio', name: 'learningStyle', label: "What's your child's primary learning style?", options: ['Visual', 'Auditory', 'Kinesthetic'] },
-        { type: 'textarea', name: 'academicStrengths', label: "What are your child's academic strengths?" },
-        { type: 'textarea', name: 'academicChallenges', label: "What academic areas does your child find challenging?" },
+        { type: 'radio', name: 'engagementWithChildren', label: "How does your child typically engage with other children?", options: ['Actively initiates and engages in play with others.', 'Responds when others engage but rarely initiates play.', 'Prefers to play alone and avoids engaging with peers.'] },
+        { type: 'radio', name: 'socialCues', label: "How well does your child understand and respond to social cues (e.g., facial expressions, tone of voice)?", options: ['Easily understands and responds appropriately.', 'Occasionally understands social cues but needs prompts.', 'Struggles to recognize or respond to social cues.'] },
+        { type: 'radio', name: 'turnTaking', label: "Does your child take turns and share when playing games or interacting with peers?", options: ['Consistently takes turns and shares.', 'Sometimes takes turns but needs reminders.', 'Struggles with turn-taking and sharing.'] },
+        { type: 'radio', name: 'groupActivities', label: "How does your child react to group activities (e.g., playing sports, classroom group work)?", options: ['Enjoys and participates actively.', 'Participates but needs encouragement.', 'Avoids or withdraws from group activities.'] },
+        { type: 'radio', name: 'comfortWithUnfamiliarPeople', label: "How comfortable is your child with unfamiliar people?", options: ['Quickly becomes comfortable.', 'Hesitant at first but warms up over time.', 'Avoids or struggles to engage.'] },
+        { type: 'radio', name: 'emotionalExpression', label: "Does your child express their emotions appropriately?", options: ['Clearly and consistently expresses emotions.', 'Sometimes expresses emotions but needs prompts.', 'Struggles to express emotions appropriately.'] },
+        { type: 'radio', name: 'followingSocialRules', label: "How well does your child follow social rules (e.g., saying “please” and “thank you”)?", options: ['Consistently follows social rules.', 'Occasionally follows rules but needs reminders.', 'Struggles to follow social rules.'] },
+        { type: 'radio', name: 'conflictHandling', label: "How does your child handle conflicts with peers?", options: ['Resolves conflicts appropriately.', 'Needs help or reminders to resolve conflicts.', 'Struggles to resolve conflicts.'] },
+        { type: 'radio', name: 'feedbackResponse', label: "How does your child respond to feedback or criticism?", options: ['Accepts feedback well and responds appropriately.', 'Sometimes accepts feedback but may get upset or defensive.', 'Struggles to accept feedback.'] },
+        { type: 'radio', name: 'helpSeeking', label: "Does your child ask for help when needed in social situations?", options: ['Consistently asks for help.', 'Sometimes asks for help but needs reminders.', 'Rarely asks for help.'] },
+        { type: 'textarea', name: 'recentSocialInteraction', label: "Can you describe a recent social interaction where your child excelled? What challenges do they usually face?" },
+        { type: 'textarea', name: 'frustrationHandling', label: "How does your child respond when they’re frustrated or upset in social situations?" },
       ]
     },
     {
-      title: "Social and Communication",
+      title: "Academic Skills",
       questions: [
-        { type: 'radio', name: 'socialSkills', label: "How would you describe your child's social skills?", options: ['Excellent', 'Good', 'Needs Improvement'] },
-        { type: 'textarea', name: 'communicationStyle', label: "Describe your child's communication style:" },
+        { type: 'radio', name: 'basicMath', label: "How well does your child perform basic math tasks?", options: ['Performs independently.', 'Requires occasional help.', 'Struggles significantly and needs support.'] },
+        { type: 'radio', name: 'readingComfort', label: "How comfortable is your child with reading age-appropriate material?", options: ['Reads independently and comprehends well.', 'Needs help with some words or comprehension.', 'Faces significant difficulty and requires support.'] },
+        { type: 'radio', name: 'writingTasks', label: "How does your child approach writing tasks?", options: ['Writes confidently and independently.', 'Requires assistance with spelling or sentence structure.', 'Finds writing tasks challenging and needs help.'] },
+        { type: 'radio', name: 'instructionFollowing', label: "Does your child understand and follow instructions during classroom activities?", options: ['Follows instructions independently.', 'Occasionally needs reminders or help.', 'Requires step-by-step guidance.'] },
+        { type: 'radio', name: 'problemSolving', label: "How does your child approach problem-solving activities?", options: ['Completes tasks independently.', 'Attempts but often requires guidance.', 'Avoids or struggles with problem-solving.'] },
+        { type: 'radio', name: 'engagementInLearning', label: "How engaged is your child in learning activities?", options: ['Actively participates and completes tasks.', 'Needs encouragement but can complete tasks when motivated.', 'Has difficulty staying focused and completing tasks.'] },
+        { type: 'radio', name: 'recognizingShapesColors', label: "How well does your child recognize basic shapes, colors, or numbers?", options: ['Identifies independently.', 'Occasionally needs reminders or assistance.', 'Struggles with recognition.'] },
+        { type: 'radio', name: 'tellingTime', label: "How comfortable is your child with telling time and understanding basic measurements?", options: ['Understands without difficulty.', 'Needs help or reminders.', 'Faces challenges with time-telling and measurements.'] },
+        { type: 'radio', name: 'memorization', label: "How does your child handle tasks that involve memorization?", options: ['Recalls facts and vocabulary with ease.', 'Requires additional time or strategies.', 'Struggles with memorization and recalling facts.'] },
+        { type: 'radio', name: 'comprehensionOfInstructions', label: "How well does your child comprehend spoken instructions?", options: ['Listens attentively and understands well.', 'Occasionally needs reminders.', 'Finds it difficult to comprehend spoken instructions.'] },
+        { type: 'textarea', name: 'academicStrengthsChallenges', label: "What academic subjects does your child excel at, and what subjects do they find challenging?" },
+        { type: 'textarea', name: 'recentLearningExperience', label: "Can you describe a recent learning experience where your child showed progress? What challenges did they face?" },
       ]
     }
-  ]
+  ];
 
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleRadioChange = (name, value) => {
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleNext = () => {
     if (currentSection < sections.length - 1) {
-      setCurrentSection(prev => prev + 1)
+      setCurrentSection(prev => prev + 1);
     }
-  }
+  };
 
   const handlePrevious = () => {
     if (currentSection > 0) {
-      setCurrentSection(prev => prev - 1)
+      setCurrentSection(prev => prev - 1);
     }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(formData)  // Here you would typically send this data to your backend
-    // Redirect or show a success message
-  }
-
-  const handleEnter = () => {
-    // Any additional logic, such as form validation or API calls, can be added here
-    navigate('/dashboard');
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);  // Here you would typically send this data to your backend
+    navigate(`/dashboard/?email=${encodeURIComponent("apple@apple.com")}`);
+  };
+  
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-header-blue p-4">
         <nav className="flex items-center justify-between container mx-auto">
           <div className="flex items-center space-x-3">
-            <ImageButton/>
+            <ImageButton />
             <p className="text-2xl font-bold text-white">InfinitePath</p>
           </div>
           <div className="flex items-center space-x-6">
@@ -183,12 +205,12 @@ function ChildProfile() {
               </button>
             ) : (
               <button
-              type="submit"
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r"
-              onClick={handleEnter}  // On button click, this function will be triggered
-            >
-              Submit
-            </button>
+                type="button"
+                onClick={handleSubmit}
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r"
+              >
+                Submit
+              </button>
             )}
           </div>
         </form>
