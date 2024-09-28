@@ -1,6 +1,6 @@
 from flask import Flask, send_from_directory
 from flask_restful import Api, Resource, reqparse
-from flask_cors import CORS #comment this on deployment
+from flask_cors import CORS # CORS support
 from api.story import storyApi
 from api.image import imageApi
 from api.tts import ttsApi
@@ -18,13 +18,19 @@ from api.quizQuestions import quizQuestionsApi
 from api.signUp import signUpApi
 
 app = Flask(__name__, static_url_path='', static_folder='build')
-CORS(app) #comment this on deployment
+
+# Setup CORS to allow requests from any origin. Restrict as necessary for deployment.
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # Adjust "*" to specific origins if needed.
+
+# Initialize API
 api = Api(app)
 
-@app.route("/", defaults={'path':''})
+# Routes
+@app.route("/", defaults={'path': ''})
 def serve(path):
-    return send_from_directory(app.static_folder,'index.html')
+    return send_from_directory(app.static_folder, 'index.html')
 
+# Resource mappings
 api.add_resource(storyApi, '/story/')
 api.add_resource(ttsApi, '/tts/')
 api.add_resource(imageApi, '/image/')
@@ -34,57 +40,6 @@ api.add_resource(quizQuestionsApi, '/quizQuestions/')
 api.add_resource(loginChecker, '/logincheck/')
 api.add_resource(answerVerificationApi, '/answerVerification/')
 api.add_resource(signUpApi, '/signUp/')
-
-ENV_FILE = find_dotenv()
-if ENV_FILE:
-    load_dotenv(ENV_FILE)
-    
-app.secret_key = env.get("APP_SECRET_KEY")
-
-oauth = OAuth(app)
-
-oauth.register(
-    "auth0",
-    client_id=env.get("AUTH0_CLIENT_ID"),
-    client_secret=env.get("AUTH0_CLIENT_SECRET"),
-    client_kwargs={
-        "scope": "openid profile email",
-    },
-    server_metadata_url=f'https://{env.get("AUTH0_DOMAIN")}/.well-known/openid-configuration'
-)
-
-
-@app.route("/login")
-def login():
-    return oauth.auth0.authorize_redirect(
-        redirect_uri=url_for("callback", _external=True)
-    )
-
-@app.route("/callback", methods=["GET", "POST"])
-def callback():
-    token = oauth.auth0.authorize_access_token()
-    session["user"] = token
-    return redirect("/")
-
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect(
-        "https://" + env.get("AUTH0_DOMAIN")
-        + "/v2/logout?"
-        + urlencode(
-            {
-                "returnTo": url_for("home", _external=True),
-                "client_id": env.get("AUTH0_CLIENT_ID"),
-            },
-            quote_via=quote_plus,
-        )
-    )
-
-@app.route("/")
-def home():
-    return render_template("home.html", session=session.get('user'), pretty=json.dumps(session.get('user'), indent=4))
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=env.get("PORT", 3000))

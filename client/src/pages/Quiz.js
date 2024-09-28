@@ -15,26 +15,36 @@ const Quiz = () => {
   const [answers, setAnswers] = useState({}); // Store selected answers
 
   useEffect(() => {
-    axios.post('http://localhost:5000/quizQuestions/', {
-      topic: skill,
-      email: email
-    }).then(response => {
-      const choicesArray = Object.values(response.data.answers); // Transform answers object into an array
-      setQuestions({
-        [skill]: {
-          quiz: [
-            {
-              id: 1,
-              question: response.data.quiz_question,
-              choices: choicesArray,
-              correct: response.data.correct_answer
-            },
-          ],
-        },
+    console.log("Fetching quiz data for skill:", skill, "and email:", email);
+    
+    if (skill && email) {  // Ensure that both skill and email are valid
+      axios.post('http://localhost:5000/quizQuestions/', {
+        topic: skill,
+        email: email
+      })
+      .then(response => {
+        console.log("Quiz data received:", response.data);  // Log the response data
+
+        const choicesArray = Object.values(response.data.answers); // Transform answers object into an array
+        setQuestions({
+          [skill]: {
+            quiz: [
+              {
+                id: 1,
+                question: response.data.quiz_question,
+                choices: choicesArray,
+                correct: response.data.correct_answer
+              },
+            ],
+          },
+        });
+      })
+      .catch(error => {
+        console.error('There was an error fetching the quiz questions!', error);
       });
-    }).catch(error => {
-      console.error('There was an error fetching the quiz questions!', error);
-    });
+    } else {
+      console.error("Skill or email is missing. Cannot fetch quiz data.");
+    }
   }, [skill, email]);
 
   const activityQuestions = questions[skill]?.quiz || []; // Safely access quiz questions

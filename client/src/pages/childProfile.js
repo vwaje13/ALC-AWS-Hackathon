@@ -116,7 +116,7 @@ function ChildProfile() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);  // Here you would typically send this data to your backend
-    navigate(`/dashboard/?email=${encodeURIComponent("apple@apple.com")}`);
+    navigate('/dashboard?email=apple%40apple.com');
   };
   
   return (

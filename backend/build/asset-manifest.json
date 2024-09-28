@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.14b78112.css",
+    "main.js": "/static/js/main.4fc60a6f.js",
+    "static/js/453.419a5d54.chunk.js": "/static/js/453.419a5d54.chunk.js",
+    "static/media/main_picture.jpg": "/static/media/main_picture.69aa20d7c3bd397eb817.jpg",
+    "static/media/turtle.svg": "/static/media/turtle.b4eb8bf5f2ae0559c6ff2ebfaddaacbf.svg",
+    "static/media/facebook_logo.png": "/static/media/facebook_logo.5fdf0eabe3b0b4456c36.png",
+    "static/media/logo.svg": "/static/media/logo.21599ef8d6ead98769133db5ada09982.svg",
+    "static/media/profileimg.svg": "/static/media/profileimg.93f883dd2f7089e48fb23aaa74169555.svg",
+    "static/media/apple-logo.png": "/static/media/apple-logo.d5e34e6f137b459c22a3.png",
+    "static/media/google-icon.png": "/static/media/google-icon.dbf907c477a4156b9c6b.png",
+    "index.html": "/index.html",
+    "main.14b78112.css.map": "/static/css/main.14b78112.css.map",
+    "main.4fc60a6f.js.map": "/static/js/main.4fc60a6f.js.map",
+    "453.419a5d54.chunk.js.map": "/static/js/453.419a5d54.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.14b78112.css",
+    "static/js/main.4fc60a6f.js"
+  ]
+}
