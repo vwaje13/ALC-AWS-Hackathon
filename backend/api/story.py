@@ -178,6 +178,7 @@ class storyApi(Resource):
         else:
             return jsonify({"error": "No data found for the specified email and topic."})
 
+        print("We got here, hello world!")
         def send_chat_message_for_single_question(topic, tag, data):
             """
             Sends a chat message to the OpenAI API and returns a single quiz question.
